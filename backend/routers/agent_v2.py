@@ -50,10 +50,10 @@ class AgentOrchestrator:
             scores = await self._score_candidates(parsed_jd, candidates)
             self.metrics["candidate_scoring_time"] = time.time() - step3_start
             
-            # Step 4: Simulate outreach (concurrent)
+            # Step 4: Simulate outreach (concurrent) - pass scores for realistic conversations
             logger.info("[AGENT] Simulating outreach conversations...")
             step4_start = time.time()
-            outreach_results = await self._simulate_outreach(candidates, parsed_jd)
+            outreach_results = await self._simulate_outreach(candidates, parsed_jd, scores)
             self.metrics["outreach_time"] = time.time() - step4_start
             
             # Step 5: Combine and rank
@@ -121,46 +121,97 @@ class AgentOrchestrator:
             logger.warning(f"Scoring failed: {e}, using mock")
             return mock_services.score_candidates(jd, candidates)
     
-    async def _simulate_outreach(self, candidates: list, jd: dict) -> list:
-        """Simulate outreach with concurrency."""
+    async def _simulate_outreach(self, candidates: list, jd: dict, scores: list = None) -> list:
+        """Simulate outreach with concurrency, using match scores to generate realistic conversations."""
         try:
-            # Use async batch processing
+            # Use async batch processing with scores for realistic conversations
             results = await outreach_simulator_v2.simulate_outreach_batch(
                 candidates,
                 jd.get("title", ""),
-                jd.get("company", "")
+                jd.get("company", ""),
+                scores
             )
             logger.info(f"Completed outreach for {len(results)} candidates")
             return results
         except Exception as e:
             logger.warning(f"Outreach simulation failed: {e}, using mock")
             results = []
-            for cand in candidates:
-                results.append(mock_services.simulate_outreach(cand, jd.get("title", ""), jd.get("company", "")))
+            for idx, cand in enumerate(candidates):
+                # Get match score if available
+                score_data = None
+                if scores:
+                    score_data = next((s for s in scores if s.get("id") == cand.get("id")), None)
+                
+                match_score = score_data.get("match_score", 75) if score_data else 75
+                gaps = score_data.get("gaps", []) if score_data else []
+                
+                results.append(mock_services.simulate_outreach(
+                    cand, 
+                    jd.get("title", ""), 
+                    jd.get("company", ""),
+                    match_score,
+                    gaps
+                ))
             return results
     
     def _combine_results(self, candidates: list, scores: list, 
                          outreach: list, jd: dict) -> list:
-        """Combine scores and outreach into ranked results."""
+        """Combine scores, role fit, and outreach into ranked results with improved ranking logic."""
         results = []
+        
+        # Detect job role from JD
+        jd_text = jd.get("title", "") + " " + jd.get("domain", "") + " " + " ".join(jd.get("top_skills", []))
+        job_role = mock_services.detect_job_role(jd_text, jd.get("top_skills", []))
+        logger.info(f"[COMBINE] Detected job role: {job_role}")
+        logger.info(f"[COMBINE] Job skills: {jd.get('top_skills', [])}")
         
         for i, cand in enumerate(candidates):
             score_data = next((s for s in scores if s.get("id") == cand.get("id")), {})
             outreach_data = outreach[i] if i < len(outreach) else {}
+            candidate_skills = cand.get("skills", [])
             
-            # Build match breakdown
+            # Detect candidate domain
+            candidate_domain = mock_services.detect_candidate_domain(candidate_skills)
+            
+            # Calculate role fit with improved scoring (returns 0-100 score + explanation)
+            role_fit_score, role_fit_explanation = mock_services.calculate_role_fit_score(
+                job_role, candidate_domain,
+                candidate_skills=candidate_skills,
+                job_skills=jd.get("top_skills", [])
+            )
+            
+            # Calculate skill match with normalization
+            skill_match_score, matched_skills_count, missing_skills = mock_services.calculate_skill_match_score(
+                jd.get("top_skills", []), candidate_skills
+            )
+            
+            # Generate ranking explanation
+            ranking_explanation = mock_services.generate_ranking_explanation(
+                cand, job_role, role_fit_score, role_fit_explanation,
+                skill_match_score, missing_skills, 0  # Combined score calculated below
+            )
+            
+            logger.info(f"[COMBINE] {cand.get('name', f'Candidate {i+1}')}: "
+                       f"domain={candidate_domain}, role_fit={role_fit_score}/100, "
+                       f"skill_match={skill_match_score}/100")
+            
+            # Build match breakdown with improved role fit
             match_breakdown = ScoringBreakdown(
-                skill_match_score=score_data.get("skill_match_score", 0),
+                skill_match_score=skill_match_score,
                 experience_alignment=score_data.get("experience_alignment", 0),
                 profile_fit=score_data.get("profile_fit", 0),
                 cultural_fit=score_data.get("cultural_fit", 0),
                 overall_match_score=score_data.get("match_score", 0),
-                reasoning=score_data.get("reasoning", []),
+                role_fit_score=role_fit_score,
+                candidate_domain=candidate_domain,
+                reasoning=score_data.get("reasoning", []) + [role_fit_explanation] if role_fit_explanation else score_data.get("reasoning", []),
                 strengths=score_data.get("strengths", []),
-                gaps=score_data.get("gaps", [])
+                gaps=score_data.get("gaps", missing_skills)
             )
             
-            match_score = int(score_data.get("match_score", 50))
+            match_score = int(score_data.get("match_score", skill_match_score))
+            skill_match_normalized = skill_match_score / 100.0  # Normalize to 0-1
+            role_fit_normalized = role_fit_score / 100.0  # Normalize to 0-1
             
             # Build interest breakdown
             interest_breakdown = InterestBreakdown(
@@ -175,9 +226,21 @@ class AgentOrchestrator:
             )
             
             interest_score = int(outreach_data.get("interest_score", 50))
+            interest_normalized = interest_score / 100.0  # Normalize to 0-1
             
-            # Calculate combined score
-            combined_score = match_score * 0.6 + interest_score * 0.4
+            # ╔════════════════════════════════════════════════════════════════╗
+            # ║ IMPROVED RANKING FORMULA: Equal weight to Skill & Role         ║
+            # ║ Final Score = (0.4 × Skill Match) +                            ║
+            # ║              (0.4 × Role Fit) +                                ║
+            # ║              (0.2 × Interest Score)                            ║
+            # ║                                                                ║
+            # ║ Sort by: 1. Final Score (desc)                                ║
+            # ║          2. Role Fit (desc) - tie-breaker                      ║
+            # ║          3. Matched Skills (desc) - tie-breaker                ║
+            # ╚════════════════════════════════════════════════════════════════╝
+            combined_score = (skill_match_normalized * 0.4 + 
+                            role_fit_normalized * 0.4 + 
+                            interest_normalized * 0.2) * 100
             
             # Build candidate result
             result = CandidateResult(
@@ -195,12 +258,21 @@ class AgentOrchestrator:
                 conversation=outreach_data.get("conversation", []),
                 combined_score=combined_score,
                 rank=0,  # Will be set after sorting
-                recommendation=self._get_recommendation(match_score, interest_score)
+                recommendation=self._get_recommendation(skill_match_score, interest_score, role_fit_score)
             )
+            
+            # Store additional metadata for sorting
+            result._matched_skills_count = matched_skills_count
+            result._role_fit_score = role_fit_score
+            
             results.append(result)
         
-        # Sort by combined score
-        results.sort(key=lambda x: x.combined_score, reverse=True)
+        # Sort by: 1. combined_score (desc), 2. role_fit (desc), 3. matched_skills (desc)
+        results.sort(key=lambda x: (
+            x.combined_score,
+            x._role_fit_score,
+            x._matched_skills_count
+        ), reverse=True)
         
         # Set ranks
         for idx, result in enumerate(results):
@@ -208,15 +280,19 @@ class AgentOrchestrator:
         
         return results
     
-    def _get_recommendation(self, match_score: int, interest_score: int) -> str:
-        """Determine recommendation based on scores."""
-        avg_score = (match_score + interest_score) / 2
+    def _get_recommendation(self, skill_match_score: int, interest_score: int, role_fit_score: int = None) -> str:
+        """Determine recommendation based on scores with role fit consideration."""
+        if role_fit_score is None:
+            role_fit_score = 50  # Default if not provided
         
-        if avg_score >= 80 and interest_score >= 70:
+        # Weighted average: skill (40%) + role fit (40%) + interest (20%)
+        avg_score = (skill_match_score * 0.4 + role_fit_score * 0.4 + interest_score * 0.2)
+        
+        if avg_score >= 80 and role_fit_score >= 75 and interest_score >= 70:
             return "Strong Match"
-        elif avg_score >= 70:
+        elif avg_score >= 70 and role_fit_score >= 60:
             return "Good Fit"
-        elif avg_score >= 60:
+        elif avg_score >= 60 or role_fit_score >= 65:
             return "Potential"
         else:
             return "Review"
