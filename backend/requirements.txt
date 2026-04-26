@@ -1,0 +1,33 @@
+# FastAPI & Server
+fastapi==0.136.1
+uvicorn[standard]==0.46.0
+python-dotenv==1.2.2
+
+# API & HTTP
+openai==2.32.0
+httpx==0.28.1
+requests==2.33.1
+
+# Data & Validation
+pydantic==2.13.3
+pydantic-core==2.46.3
+
+# Database (optional)
+sqlalchemy==2.0.27
+psycopg2-binary==2.9.9
+
+# Production Server (optional, instead of uvicorn)
+gunicorn==22.0.0
+
+# Monitoring & Logging
+python-json-logger==2.0.7
+
+# Utils
+python-multipart==0.0.6
+typing-extensions==4.15.0
+
+# Development (optional)
+pytest==8.2.0
+pytest-asyncio==0.24.0
+black==24.4.2
+flake8==7.1.0

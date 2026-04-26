@@ -1,0 +1,108 @@
+.shortlist {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.jd-summary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.jd-summary h2 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.5rem;
+}
+
+.jd-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail.full-width {
+  grid-column: 1 / -1;
+}
+
+.detail strong {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.detail span {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.seniority-badge {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-tag {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.skill-tag.required {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+}
+
+.skill-tag.optional {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  opacity: 0.85;
+}
+
+.candidates-section h2 {
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.candidates-count {
+  padding: 1rem;
+  background-color: #e8f5e9;
+  border-left: 4px solid #4CAF50;
+  border-radius: 4px;
+  color: #2e7d32;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.candidates-count strong {
+  color: #1b5e20;
+  font-size: 1.1rem;
+}
+
+.candidates-list {
+  display: flex;
+  flex-direction: column;
+}

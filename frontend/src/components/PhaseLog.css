@@ -1,0 +1,74 @@
+.phase-log {
+  padding: 1.5rem;
+  background: #f0f8ff;
+  border-left: 4px solid #2196F3;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+.phase-log h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.phases-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.phase-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.phase-item.status-completed {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.phase-item.status-in-progress {
+  background-color: #fff3e0;
+  color: #e65100;
+  animation: pulse 1.5s infinite;
+}
+
+.phase-item.status-pending {
+  background-color: #f5f5f5;
+  color: #999;
+}
+
+.phase-item.status-error {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.phase-icon {
+  font-size: 18px;
+  min-width: 24px;
+  text-align: center;
+}
+
+.phase-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.phase-status {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
