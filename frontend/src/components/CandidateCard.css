@@ -1,0 +1,429 @@
+.candidate-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.candidate-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.candidate-info h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.position {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.score-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.score {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2196F3;
+}
+
+.score-label {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.scores {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.score-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.score-item .label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.score-bar {
+  width: 100%;
+  height: 24px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.score-fill {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  transition: width 0.3s;
+}
+
+.score-fill.match {
+  background-color: #4CAF50;
+}
+
+.score-fill.interest {
+  background-color: #2196F3;
+}
+
+.skills {
+  margin-bottom: 1rem;
+}
+
+.skills strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-tag {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.reasons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.reason {
+  background-color: #f9f9f9;
+  padding: 0.75rem;
+  border-left: 3px solid #2196F3;
+  border-radius: 4px;
+}
+
+.reason strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.reason p {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.expand-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  margin-bottom: 0;
+}
+
+.expand-btn:hover {
+  background-color: #e8e8e8;
+}
+
+.conversation {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #f0f0f0;
+}
+
+.conversation h4 {
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.message {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.message.recruiter {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  margin-left: 1rem;
+}
+
+.message.candidate {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  margin-right: 1rem;
+}
+
+.message .role {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.message .text {
+  display: block;
+}
+
+.message .sentiment {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-top: 0.25rem;
+}
+
+/* New v2 styling */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.candidate-info {
+  flex: 1;
+}
+
+.candidate-info h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.position {
+  margin: 0.25rem 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.location {
+  margin: 0.25rem 0 0 0;
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.score-section {
+  text-align: right;
+  min-width: 100px;
+}
+
+.score-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.score {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2196F3;
+}
+
+.score-label {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.recommendation {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.candidate-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.candidate-details .detail {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.candidate-details strong {
+  min-width: 80px;
+  color: #333;
+}
+
+.candidate-details span {
+  color: #666;
+  flex: 1;
+}
+
+.breakdown-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .breakdown-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+.breakdown {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 4px;
+  border-left: 3px solid #2196F3;
+}
+
+.breakdown h4 {
+  margin: 0 0 0.75rem 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.score-factors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.factor {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  padding: 0.5rem;
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+}
+
+.factor span:first-child {
+  color: #666;
+  font-weight: 500;
+}
+
+.factor .value {
+  color: #2196F3;
+  font-weight: 600;
+}
+
+.strengths {
+  margin-bottom: 0.75rem;
+}
+
+.strengths strong,
+.gaps strong,
+.signals strong,
+.concerns strong {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.strengths ul,
+.gaps ul,
+.signals ul,
+.concerns ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style: none;
+}
+
+.strengths li {
+  color: #2e7d32;
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.gaps li {
+  color: #c62828;
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.signals li {
+  color: #2e7d32;
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.concerns li {
+  color: #f57c00;
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.interest-info {
+  margin-bottom: 0.75rem;
+}
+
+.interest-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+}
+
+.interest-item span:first-child {
+  color: #666;
+  font-weight: 500;
+}
+
+.likelihood-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.05);
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Arjun Mehta",
+    "title": "ML Engineer @ Swiggy",
+    "skills": ["PyTorch", "Recommender Systems", "Kafka", "Python", "React", "TypeScript"],
+    "experience": "5 years",
+    "experience_years": 5,
+    "location": "Bangalore",
+    "summary": "Built food personalization engine for 80M+ users. Full-stack engineer with modern tech stack."
+  },
+  {
+    "id": 2,
+    "name": "Priya Sharma",
+    "title": "Senior Data Engineer @ Flipkart",
+    "skills": ["Spark", "Scala", "AWS", "SQL", "TypeScript", "REST APIs"],
+    "experience": "6 years",
+    "experience_years": 6,
+    "location": "NYC",
+    "summary": "Led data pipeline modernization serving 100M+ queries daily. Expert in distributed systems."
+  },
+  {
+    "id": 3,
+    "name": "Rahul Patel",
+    "title": "Backend Engineer @ Amazon",
+    "skills": ["Java", "Spring Boot", "Microservices", "Kubernetes", "React", "Tailwind CSS"],
+    "experience": "4 years",
+    "experience_years": 4,
+    "location": "San Francisco",
+    "summary": "Designed high-availability service architecture. Proficient in full-stack development."
+  }
+]
