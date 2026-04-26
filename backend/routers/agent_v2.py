@@ -174,11 +174,14 @@ class AgentOrchestrator:
             candidate_domain = mock_services.detect_candidate_domain(candidate_skills)
             
             # Calculate role fit with improved scoring (returns 0-100 score + explanation)
-            role_fit_score, role_fit_explanation = mock_services.calculate_role_fit_score(
+            role_fit_score_100, role_fit_explanation = mock_services.calculate_role_fit_score(
                 job_role, candidate_domain,
                 candidate_skills=candidate_skills,
                 job_skills=jd.get("top_skills", [])
             )
+            
+            # Convert to 0-10 scale for schema compatibility
+            role_fit_score = role_fit_score_100 / 10.0
             
             # Calculate skill match with normalization
             skill_match_score, matched_skills_count, missing_skills = mock_services.calculate_skill_match_score(
@@ -187,22 +190,22 @@ class AgentOrchestrator:
             
             # Generate ranking explanation
             ranking_explanation = mock_services.generate_ranking_explanation(
-                cand, job_role, role_fit_score, role_fit_explanation,
+                cand, job_role, role_fit_score_100, role_fit_explanation,
                 skill_match_score, missing_skills, 0  # Combined score calculated below
             )
             
             logger.info(f"[COMBINE] {cand.get('name', f'Candidate {i+1}')}: "
-                       f"domain={candidate_domain}, role_fit={role_fit_score}/100, "
+                       f"domain={candidate_domain}, role_fit={role_fit_score_100}/100, "
                        f"skill_match={skill_match_score}/100")
             
-            # Build match breakdown with improved role fit
+            # Build match breakdown with improved role fit (converted to 0-10 scale)
             match_breakdown = ScoringBreakdown(
                 skill_match_score=skill_match_score,
                 experience_alignment=score_data.get("experience_alignment", 0),
                 profile_fit=score_data.get("profile_fit", 0),
                 cultural_fit=score_data.get("cultural_fit", 0),
                 overall_match_score=score_data.get("match_score", 0),
-                role_fit_score=role_fit_score,
+                role_fit_score=role_fit_score,  # Now in 0-10 scale
                 candidate_domain=candidate_domain,
                 reasoning=score_data.get("reasoning", []) + [role_fit_explanation] if role_fit_explanation else score_data.get("reasoning", []),
                 strengths=score_data.get("strengths", []),
@@ -211,7 +214,7 @@ class AgentOrchestrator:
             
             match_score = int(score_data.get("match_score", skill_match_score))
             skill_match_normalized = skill_match_score / 100.0  # Normalize to 0-1
-            role_fit_normalized = role_fit_score / 100.0  # Normalize to 0-1
+            role_fit_normalized = role_fit_score / 10.0  # Normalize to 0-1 (from 0-10 scale)
             
             # Build interest breakdown
             interest_breakdown = InterestBreakdown(
