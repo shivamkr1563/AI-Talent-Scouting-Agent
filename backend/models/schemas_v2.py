@@ -56,6 +56,8 @@ class ScoringBreakdown(BaseModel):
     profile_fit: int = Field(ge=0, le=100)
     cultural_fit: int = Field(ge=0, le=100)
     overall_match_score: int = Field(ge=0, le=100)
+    role_fit_score: float = Field(ge=0, le=10, default=5.0)  # NEW: Role fit (0-10 scale)
+    candidate_domain: str = Field(default="unknown")  # NEW: Detected domain
     reasoning: list[str]  # Detailed explanation of score
     strengths: list[str]
     gaps: list[str]
