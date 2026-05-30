@@ -9,8 +9,6 @@ This document shows real examples of the AI Talent Scouting Agent in action with
 1. [Example 1: Senior Backend Engineer](#example-1-senior-backend-engineer)
 2. [Example 2: React Frontend Developer](#example-2-react-frontend-developer)
 3. [Example 3: DevOps Engineer](#example-3-devops-engineer)
-4. [Example 4: Full-Stack Developer](#example-4-full-stack-developer)
-5. [Example 5: Data Science / ML Engineer](#example-5-data-science--ml-engineer)
 
 ---
 
@@ -18,542 +16,372 @@ This document shows real examples of the AI Talent Scouting Agent in action with
 
 ### Input
 
-```
 Job Description:
-"We're looking for a Senior Backend Engineer with 5+ years of Python 
-experience. Strong skills in FastAPI, PostgreSQL, and AWS required. 
-Must have experience with microservices architecture and handling 
-high-traffic systems. Remote position, competitive compensation for 
-senior level."
+
+"We're looking for a Senior Backend Engineer with 5+ years of Python experience. Strong skills in FastAPI, PostgreSQL, and AWS required. Must have experience with microservices architecture and handling high-traffic systems. Remote position, competitive compensation for senior level."
 
 Company: TechStartup Inc.
+
 Max Candidates: 20
-```
 
 ### Output
 
-#### RANK 1: Arjun Mehta ⭐⭐⭐⭐⭐
+#### RANK 1: Rahul Patel
 
-**Match Score: 86.4/100 — Strong Match**
+**Combined Score: 49/100 — Review**
 
-```json
-{
-  "rank": 1,
-  "name": "Arjun Mehta",
-  "current_title": "Backend Engineer @ CloudTech",
-  "experience_years": 6,
-  "location": "Bangalore",
-  "match_score": 86.4,
-  "recommendation": "Strong Match - Contact Immediately",
-  "scoring_breakdown": {
-    "skill_match": {
-      "score": 85,
-      "found_skills": [
-        "Python",
-        "FastAPI",
-        "PostgreSQL",
-        "AWS"
-      ],
-      "missing_skills": [],
-      "extra_skills": [
-        "Redis",
-        "Kubernetes",
-        "Docker"
-      ],
-      "extra_skills_bonus": 10,
-      "breakdown": {
-        "python": 25,
-        "fastapi": 25,
-        "postgresql": 25,
-        "redis_bonus": 5,
-        "kubernetes_bonus": 5
-      }
-    },
-    "role_fit": {
-      "score": 9,
-      "domain": "Backend",
-      "domain_match_points": 3,
-      "experience_points": 3,
-      "tech_stack_points": 2,
-      "career_progression_points": 1,
-      "reasoning": "6 years backend experience, exact tech stack match, proven microservices background"
-    },
-    "interest": {
-      "score": 82,
-      "level": "high",
-      "positive_signals": [
-        "Career growth opportunity appeals",
-        "Senior title aligns with aspirations",
-        "Exact tech stack match",
-        "Remote-first appeals to candidate"
-      ],
-      "concerns": [
-        "Relocation might be needed if office visits required",
-        "Current compensation likely higher"
-      ]
-    }
-  },
-  "conversation": [
-    {
-      "role": "recruiter",
-      "message": "Hi Arjun! We have an exciting Senior Backend Engineer role with a cutting-edge team building scalable microservices on AWS. We're handling millions of transactions daily and need someone with your expertise."
-    },
-    {
-      "role": "candidate",
-      "message": "That sounds interesting! Tell me more about the team structure and what kind of systems you're building?"
-    },
-    {
-      "role": "recruiter",
-      "message": "We're using Python with FastAPI, deploying on AWS with Kubernetes for orchestration. We handle millions of transactions daily. Looking for someone with your microservices background to lead architectural decisions."
-    },
-    {
-      "role": "candidate",
-      "message": "Perfect! That's exactly my background. I've built and optimized similar systems. I'm very interested in this opportunity. What's the compensation range?"
-    },
-    {
-      "role": "recruiter",
-      "message": "Senior level compensation: $200-250k + equity. Based on your background, we're thinking closer to $230k. How does that align?"
-    },
-    {
-      "role": "candidate",
-      "message": "That's competitive and fair. I'm definitely interested. When can we move to the next step?"
-    }
-  ]
-}
-```
+* Current Title: Backend Engineer @ Amazon
+* Location: San Francisco
+* Experience: 4 Years
+
+Match Analysis:
+
+* Match Score: 47/100
+* Interest Score: 61/100
+* Skill Match: 16/100
+* Experience Alignment: 90/100
+* Profile Fit: 72/100
+* Cultural Fit: 66/100
+
+Strengths:
+
+* Proficient in Java, Spring Boot, and Microservices
+* 4+ years of relevant experience
+* Proven track record in backend engineering
+
+Gaps:
+
+* Missing AWS expertise
+* Missing FastAPI experience
+
+Recommendation:
+
+Review Candidate – Potential fit with additional training and onboarding.
 
 ---
 
-#### RANK 2: Priya Sharma ⭐⭐⭐⭐
+#### RANK 2: Arjun Mehta
 
-**Match Score: 72.1/100 — Good Match**
+**Combined Score: 49/100 — Review**
 
-```json
-{
-  "rank": 2,
-  "name": "Priya Sharma",
-  "current_title": "Full-Stack Engineer @ WebCorp",
-  "experience_years": 5,
-  "location": "Hyderabad",
-  "match_score": 72.1,
-  "recommendation": "Good Match - Consider",
-  "scoring_breakdown": {
-    "skill_match": {
-      "score": 72,
-      "found_skills": [
-        "Python",
-        "FastAPI",
-        "PostgreSQL"
-      ],
-      "missing_skills": [
-        "AWS"
-      ],
-      "extra_skills": [
-        "Node.js",
-        "React",
-        "Docker"
-      ],
-      "notes": "Strong fundamentals but less backend infrastructure experience"
-    },
-    "role_fit": {
-      "score": 7,
-      "domain": "Backend",
-      "reasoning": "Full-stack background with good backend focus, slightly different tech stack exposure, learning curve required"
-    },
-    "interest": {
-      "score": 68,
-      "level": "medium",
-      "positive_signals": [
-        "Growth opportunity interests her",
-        "Remote work appeals"
-      ],
-      "concerns": [
-        "Prefers full-stack development",
-        "AWS experience limited",
-        "May expect higher salary",
-        "Learning FastAPI frameworks new"
-      ]
-    }
-  },
-  "conversation": [
-    {
-      "role": "recruiter",
-      "message": "Hi Priya! We have a Senior Backend role available focused on FastAPI and AWS..."
-    },
-    {
-      "role": "candidate",
-      "message": "I appreciate the opportunity, but I'm most interested in roles that involve both frontend and backend development..."
-    },
-    {
-      "role": "recruiter",
-      "message": "Understood. However, this role has opportunities for architectural influence and potential team leadership..."
-    },
-    {
-      "role": "candidate",
-      "message": "That's interesting. Can you tell me more about the learning opportunities with AWS?"
-    }
-  ]
-}
-```
+* Current Title: ML Engineer @ Swiggy
+* Location: Bangalore
+* Experience: 5 Years
+
+Match Analysis:
+
+* Match Score: 50/100
+* Interest Score: 60/100
+* Skill Match: 16/100
+* Experience Alignment: 100/100
+* Profile Fit: 71/100
+* Cultural Fit: 85/100
+
+Strengths:
+
+* Strong Python background
+* 5+ years of experience
+* Proven large-scale system experience
+
+Gaps:
+
+* Missing AWS expertise
+* Missing FastAPI experience
+
+Recommendation:
+
+Review Candidate – Strong engineering background but lacks key backend requirements.
 
 ---
 
-#### RANK 3: Rahul Patel ⭐⭐
+#### RANK 3: Priya Sharma
 
-**Match Score: 58.9/100 — Moderate Fit**
+**Combined Score: 23/100 — Review**
 
-```json
-{
-  "rank": 3,
-  "name": "Rahul Patel",
-  "current_title": "Backend Engineer @ FinTech",
-  "experience_years": 5,
-  "location": "Mumbai",
-  "match_score": 58.9,
-  "recommendation": "Moderate Fit - Interview if others unavailable",
-  "scoring_breakdown": {
-    "skill_match": {
-      "score": 62,
-      "found_skills": [
-        "Python",
-        "PostgreSQL"
-      ],
-      "missing_skills": [
-        "FastAPI",
-        "AWS",
-        "Docker"
-      ],
-      "extra_skills": [
-        "Django",
-        "Oracle"
-      ],
-      "notes": "More Django/Flask experience, less modern FastAPI ecosystem"
-    },
-    "role_fit": {
-      "score": 6,
-      "domain": "Backend",
-      "reasoning": "Backend experience but different tech stack, significant learning curve required"
-    },
-    "interest": {
-      "score": 52,
-      "level": "medium-low",
-      "positive_signals": [
-        "Open to learning FastAPI",
-        "Interested in microservices"
-      ],
-      "concerns": [
-        "Career pivot might not align well",
-        "Salary expectations higher than budget",
-        "Cloud infrastructure knowledge limited",
-        "May not be ready for senior role"
-      ]
-    }
-  }
-}
-```
+* Current Title: Senior Data Engineer @ Flipkart
+* Location: NYC
+* Experience: 6 Years
 
-### Processing Metrics
+Match Analysis:
 
-```json
-{
-  "total_time_seconds": 1.2,
-  "jd_parsing_time": 0.2,
-  "candidate_scoring_time": 0.8,
-  "candidates_evaluated": 20,
-  "top_candidates": 3,
-  "confidence_score": 92,
-  "scoring_distribution": {
-    "excellent_80_plus": 1,
-    "good_65_to_79": 1,
-    "moderate_50_to_64": 1,
-    "poor_below_50": 17
-  }
-}
-```
+* Match Score: 53/100
+* Interest Score: 45/100
+* Skill Match: 16/100
+* Experience Alignment: 100/100
+* Profile Fit: 91/100
+* Cultural Fit: 75/100
 
----
+Strengths:
+
+* Strong AWS experience
+* Extensive distributed systems knowledge
+* 6+ years of engineering experience
+
+Gaps:
+
+* Missing FastAPI expertise
+* Missing Microservices experience
+
+Recommendation:
+
+Review Candidate – Relevant cloud background but lacks core backend stack requirements.
+
 
 ## Example 2: React Frontend Developer
 
 ### Input
 
-```
 Job Description:
-"React Developer - 3+ years frontend development, React, Redux, 
-TypeScript, Tailwind CSS. Must have UI/UX sensibility and testing 
-experience (Jest, React Testing Library). San Francisco office 
-(flexible remote), strong compensation. Looking for someone who 
-cares about user experience and code quality."
+
+"React Developer - 3+ years frontend development, React, Redux, TypeScript, Tailwind CSS. Must have UI/UX sensibility and testing experience (Jest, React Testing Library). San Francisco office (flexible remote), strong compensation. Looking for someone who cares about user experience and code quality."
 
 Company: DesignTech
+
 Max Candidates: 50
-```
 
 ### Output
 
-#### RANK 1: Sarah Chen ⭐⭐⭐⭐⭐
+#### RANK 1: Rahul Patel
 
-**Match Score: 91.2/100 — Excellent Match**
+**Combined Score: 62/100 — Review**
 
-```json
-{
-  "rank": 1,
-  "name": "Sarah Chen",
-  "current_title": "Senior Frontend Engineer @ StartupXYZ",
-  "experience_years": 5,
-  "location": "San Francisco, CA",
-  "match_score": 91.2,
-  "recommendation": "URGENT: Strong Match - Hot Candidate",
-  "scoring_breakdown": {
-    "skill_match": {
-      "score": 94,
-      "found_skills": [
-        "React",
-        "Redux",
-        "TypeScript",
-        "Tailwind CSS",
-        "Jest",
-        "React Testing Library"
-      ],
-      "missing_skills": [],
-      "extra_skills": [
-        "Next.js",
-        "Storybook",
-        "Cypress",
-        "CSS-in-JS"
-      ],
-      "extra_skills_bonus": 15,
-      "breakdown": {
-        "react": 25,
-        "redux": 25,
-        "typescript": 25,
-        "tailwind": 19
-      }
-    },
-    "role_fit": {
-      "score": 10,
-      "domain": "Frontend",
-      "domain_match_points": 3,
-      "experience_points": 3,
-      "tech_stack_points": 3,
-      "career_progression_points": 1,
-      "reasoning": "Perfect domain alignment, exceeds all requirements, strong UI/UX background, passionate about testing"
-    },
-    "interest": {
-      "score": 87,
-      "level": "high",
-      "positive_signals": [
-        "San Francisco location preference",
-        "UI/UX passion demonstrated in portfolio",
-        "Company values align (user-centric)",
-        "Growth opportunity in expanding team",
-        "Tech stack exactly matches skills"
-      ],
-      "concerns": []
-    }
-  },
-  "conversation": [
-    {
-      "role": "recruiter",
-      "message": "Hi Sarah! We have an exciting React Developer role with a design-focused team. We build beautiful, accessible web applications and care deeply about UX."
-    },
-    {
-      "role": "candidate",
-      "message": "That's exactly what I'm looking for! I'm passionate about building performant, accessible UIs. Tell me more about the team and current projects."
-    },
-    {
-      "role": "recruiter",
-      "message": "We use React, TypeScript, Tailwind, and are growing the frontend team. We value testing, accessibility, and user research."
-    },
-    {
-      "role": "candidate",
-      "message": "Perfect! That aligns with my values. I've been wanting to work in an environment where UX and testing are priorities. What's the compensation like?"
-    },
-    {
-      "role": "recruiter",
-      "message": "Senior Frontend: $180-220k + equity. Given your background and portfolio, we'd offer $210k."
-    },
-    {
-      "role": "candidate",
-      "message": "That's great! I'm very interested. I'm available to start in 2 weeks. Let's schedule a technical interview!"
-    }
-  ]
-}
-```
+* Current Title: Backend Engineer @ Amazon
+* Location: San Francisco
+* Experience: 4 Years
+
+Match Analysis:
+
+* Match Score: 69/100
+* Interest Score: 72/100
+* Skill Match: 28/100
+* Experience Alignment: 100/100
+* Profile Fit: 79/100
+* Cultural Fit: 67/100
+
+Strengths:
+
+* Proficient in React and Tailwind CSS
+* Strong engineering background
+* Experience building scalable systems
+* Shows willingness to learn frontend-focused technologies
+
+Gaps:
+
+* Missing TypeScript expertise
+* Missing testing experience (Jest, React Testing Library)
+
+Recommendation:
+
+Review Candidate – Good engineering foundation but requires frontend-specific upskilling.
+
+---
+
+#### RANK 2: Arjun Mehta
+
+**Combined Score: 60/100 — Review**
+
+* Current Title: ML Engineer @ Swiggy
+* Location: Bangalore
+* Experience: 5 Years
+
+Match Analysis:
+
+* Match Score: 56/100
+* Interest Score: 59/100
+* Skill Match: 28/100
+* Experience Alignment: 100/100
+* Profile Fit: 73/100
+* Cultural Fit: 79/100
+
+Strengths:
+
+* React and TypeScript exposure
+* Strong software engineering experience
+* Experience working on large-scale products
+
+Gaps:
+
+* Missing Tailwind CSS expertise
+* Missing testing experience
+
+Recommendation:
+
+Review Candidate – Strong technical profile but limited frontend specialization.
+
+---
+
+#### RANK 3: Priya Sharma
+
+**Combined Score: 53/100 — Review**
+
+* Current Title: Senior Data Engineer @ Flipkart
+* Location: NYC
+* Experience: 6 Years
+
+Match Analysis:
+
+* Match Score: 53/100
+* Interest Score: 57/100
+* Skill Match: 14/100
+* Experience Alignment: 100/100
+* Profile Fit: 94/100
+* Cultural Fit: 80/100
+
+Strengths:
+
+* Strong engineering background
+* Experience with TypeScript and APIs
+* Extensive production system experience
+
+Gaps:
+
+* Missing Tailwind CSS expertise
+* Missing frontend testing experience
+
+Recommendation:
+
+Review Candidate – Strong engineering profile but limited alignment with frontend-focused requirements.
 
 ### Processing Metrics
 
 ```json
 {
-  "total_time_seconds": 0.9,
-  "jd_parsing_time": 0.15,
-  "candidate_scoring_time": 0.65,
-  "candidates_evaluated": 50,
-  "top_candidates": 1,
-  "confidence_score": 96
+  "candidates_evaluated": 3,
+  "top_candidates": 3,
+  "highest_match_score": 69,
+  "average_interest_score": 62,
+  "evaluation_status": "Completed Successfully"
 }
 ```
 
----
 
 ## Example 3: DevOps Engineer
 
 ### Input
 
-```
 Job Description:
-"DevOps Engineer - 4+ years required. Expert in Docker, Kubernetes, 
-AWS (EC2, RDS, S3), CI/CD pipelines (GitHub Actions/GitLab CI). 
-Infrastructure as Code (Terraform), monitoring (Prometheus, Grafana). 
-Must have high-traffic system experience. Competitive compensation 
-for the right candidate."
+
+"DevOps Engineer - 4+ years required. Expert in Docker, Kubernetes, AWS (EC2, RDS, S3), CI/CD pipelines (GitHub Actions/GitLab CI). Infrastructure as Code (Terraform), monitoring (Prometheus, Grafana). Must have high-traffic system experience. Competitive compensation for the right candidate."
 
 Company: CloudScale
+
 Max Candidates: 30
-```
 
 ### Output
 
-#### RANK 1: Mark Johnson ⭐⭐⭐⭐⭐
+#### RANK 1: Priya Sharma
 
-**Match Score: 88.7/100 — Strong Match**
+**Combined Score: 26/100 — Review**
 
-```json
-{
-  "rank": 1,
-  "name": "Mark Johnson",
-  "current_title": "DevOps Specialist @ TechScale",
-  "experience_years": 6,
-  "match_score": 88.7,
-  "scoring_breakdown": {
-    "skill_match": {
-      "score": 92,
-      "found_skills": [
-        "Docker",
-        "Kubernetes",
-        "AWS",
-        "GitHub Actions",
-        "Terraform",
-        "Prometheus",
-        "Grafana"
-      ],
-      "missing_skills": [],
-      "extra_skills": [
-        "Helm",
-        "ArgoCD",
-        "Datadog",
-        "PagerDuty"
-      ]
-    },
-    "role_fit": {
-      "score": 9,
-      "reasoning": "6 years DevOps, expert in all required tools, proven high-traffic system management"
-    },
-    "interest": {
-      "score": 85,
-      "level": "high",
-      "positive_signals": [
-        "Infrastructure automation passion",
-        "Architecture influence appeals"
-      ]
-    }
-  },
-  "recommendation": "Strong Match - Contact Immediately"
-}
-```
+* Current Title: Senior Data Engineer @ Flipkart
+* Location: NYC
+* Experience: 6 Years
+
+Match Analysis:
+
+* Match Score: 50/100
+* Interest Score: 57/100
+* Skill Match: 7/100
+* Experience Alignment: 100/100
+* Profile Fit: 95/100
+* Cultural Fit: 80/100
+
+Strengths:
+
+* Strong AWS experience
+* Distributed systems background
+* Extensive large-scale data infrastructure experience
+* Proven engineering leadership
+
+Gaps:
+
+* Missing GitHub Actions expertise
+* Missing monitoring stack experience (Prometheus/Grafana)
+
+Recommendation:
+
+Review Candidate – Strong cloud background but lacks key DevOps tooling requirements.
 
 ---
 
-## Example 4: Full-Stack Developer
+#### RANK 2: Rahul Patel
 
-### Input
+**Combined Score: 25/100 — Review**
 
-```
-Job Description:
-"Full-Stack Developer - 5+ years required. React/Vue.js on frontend, 
-Node.js or Python on backend. PostgreSQL, MongoDB experience. Docker, 
-AWS deployment. GitHub, Agile. Looking for someone who can own 
-features end-to-end from design to deployment."
+* Current Title: Backend Engineer @ Amazon
+* Location: San Francisco
+* Experience: 4 Years
 
-Company: WebInnovate
-Max Candidates: 40
-```
+Match Analysis:
 
-### Output Summary
+* Match Score: 50/100
+* Interest Score: 49/100
+* Skill Match: 7/100
+* Experience Alignment: 100/100
+* Profile Fit: 90/100
+* Cultural Fit: 90/100
 
-```json
-{
-  "candidates_ranked": 3,
-  "top_match": {
-    "rank": 1,
-    "name": "Jessica Rodriguez",
-    "match_score": 85.3,
-    "recommendation": "Strong Match - Contact Immediately",
-    "key_strengths": [
-      "7 years full-stack experience",
-      "React expert with 5 years",
-      "Node.js backend specialist",
-      "PostgreSQL + MongoDB proficient",
-      "Docker & AWS deployment experience",
-      "Proven ability to own features end-to-end"
-    ],
-    "areas_for_discussion": [
-      "Vue.js not in background (React focused)"
-    ]
-  },
-  "processing_time": 1.3,
-  "candidates_evaluated": 40
-}
-```
+Strengths:
+
+* Kubernetes exposure
+* Backend infrastructure experience
+* Experience with scalable systems
+
+Gaps:
+
+* Missing GitHub Actions expertise
+* Missing monitoring stack experience
+
+Recommendation:
+
+Review Candidate – Relevant infrastructure exposure but limited DevOps specialization.
 
 ---
 
-## Example 5: Data Science / ML Engineer
+#### RANK 3: Arjun Mehta
 
-### Input
+**Combined Score: 22/100 — Review**
 
-```
-Job Description:
-"Machine Learning Engineer - 3+ years required. Python expert (NumPy, 
-Pandas, scikit-learn), deep learning (TensorFlow/PyTorch), 
-experimentation and statistics. SQL for data queries. Experience 
-deploying models to production. Remote team, research-focused."
+* Current Title: ML Engineer @ Swiggy
+* Location: Bangalore
+* Experience: 5 Years
 
-Company: AILabs
-Max Candidates: 25
-```
+Match Analysis:
 
-### Output Summary
+* Match Score: 41/100
+* Interest Score: 52/100
+* Skill Match: 0/100
+* Experience Alignment: 100/100
+* Profile Fit: 70/100
+* Cultural Fit: 72/100
+
+Strengths:
+
+* Experience working with large-scale production systems
+* Strong engineering fundamentals
+* Experience handling high-volume workloads
+
+Gaps:
+
+* Missing GitHub Actions expertise
+* Missing monitoring stack experience
+* Limited DevOps-focused background
+
+Recommendation:
+
+Review Candidate – Strong engineering profile but insufficient alignment with DevOps requirements.
+
+### Processing Metrics
 
 ```json
 {
-  "top_match": {
-    "rank": 1,
-    "name": "Dr. Arun Kumar",
-    "current_title": "ML Engineer @ ResearchCorp",
-    "experience_years": 5,
-    "match_score": 89.1,
-    "recommendation": "Excellent Match - Contact Immediately",
-    "scoring": {
-      "skill_match": 91,
-      "role_fit": 9,
-      "interest": 86
-    },
-    "strengths": [
-      "5 years ML engineering",
-      "Deep learning expertise (TensorFlow & PyTorch)",
-      "Production deployment experience",
-      "Strong statistics background",
-      "Published research papers"
-    ]
-  },
-  "processing_time": 1.5,
-  "total_candidates_evaluated": 25,
-  "top_3_quality": "Very High"
+  "candidates_evaluated": 3,
+  "top_candidates": 3,
+  "highest_match_score": 50,
+  "average_interest_score": 53,
+  "evaluation_status": "Completed Successfully"
 }
 ```
-
----
 
 ## Quick Reference: Scoring Ranges
 
