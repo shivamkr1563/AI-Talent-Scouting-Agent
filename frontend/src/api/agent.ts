@@ -79,7 +79,9 @@ interface RunAgentRequest {
   max_candidates?: number
 }
 
-const API_URL = import.meta.env.VITE_API_URL || '/api'
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  'https://ai-talent-scouting-agent-qji0.onrender.com'
 
 const apiClient = axios.create({
   baseURL: API_URL,
