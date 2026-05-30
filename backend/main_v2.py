@@ -110,9 +110,9 @@ async def root():
 async def startup_event():
     """Initialize on startup."""
     logger.info("=" * 60)
-    logger.info("🚀 AI Talent Scouting Agent - Production Edition")
+    logger.info("[STARTUP] AI Talent Scouting Agent - Production Edition")
     logger.info("=" * 60)
-    logger.info(f"OpenRouter API: {'✅ Configured' if os.getenv('OPENROUTER_API_KEY') else '❌ Not configured'}")
+    logger.info(f"OpenRouter API: {'[OK] Configured' if os.getenv('OPENROUTER_API_KEY') else '[ERROR] Not configured'}")
     logger.info(f"Database: Initializing...")
     
     from services.database import db
@@ -125,13 +125,13 @@ async def startup_event():
 @app.on_event("shutdown")
 async def shutdown_event():
     """Cleanup on shutdown."""
-    logger.info("🛑 Application shutting down...")
+    logger.info("[SHUTDOWN] Application shutting down...")
 
 
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
-        "main:app",
+        "main_v2:app",
         host="0.0.0.0",
         port=int(os.getenv("PORT", 8000)),
         reload=os.getenv("ENV", "development") == "development",
