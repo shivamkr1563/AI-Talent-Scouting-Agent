@@ -94,7 +94,7 @@ export const runAgent = async (jobDescription: string, companyName = 'TechCorp',
     company_name: companyName,
     max_candidates: maxCandidates,
   }
-  const response = await apiClient.post<AgentResult>('/api/v2/run', payload)
+  const response = await apiClient.post<AgentResult>('/v2/run', payload)
   return response.data
 }
 

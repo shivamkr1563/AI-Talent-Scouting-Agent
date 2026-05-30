@@ -604,7 +604,15 @@ def score_candidates(jd_summary: Dict, candidates: List[Dict]) -> List[Dict]:
         
         # RULE 1: If core skill match < 30%, cap final score below 50
         if skill_match_score < 30:
-            match_score = min(49, match_score)
+            match_score = max(
+                20,
+                int(
+                    skill_match_score * 0.5 +
+                    experience_alignment * 0.2 +
+                    profile_fit * 0.2 +
+                    cultural_fit * 0.1
+                )
+            )
         
         # Build reasoning
         reasoning = [
