@@ -8,7 +8,7 @@ export default defineConfig({
     middlewareMode: false,
     proxy: {
       '/api': {
-        target: 'https://ai-talent-scouting-agent-production.up.railway.app',
+        target: 'http://localhost:8000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '/api'),
       }
